@@ -6,8 +6,18 @@ describe("Message all candidates", () => {
     );
     cy.get("button[aria-label='People']").click();
     cy.wait(2000);
+    cy.get(
+      "button[aria-label='Locations filter. Clicking this button displays all Locations filter options.']"
+    ).click();
+    cy.wait(2000);
+    cy.get("label[for='geoUrn-90010101']").click();
+    cy.wait(2000);
+    cy.get('button[data-control-name="filter_show_results"]')
+      .should("be.visible")
+      .click({ multiple: true, force: true });
+    cy.wait(2000);
     cy.scrollTo("bottom");
-    cy.get("button[aria-label='Page 4']").click();
+    // cy.get("button[aria-label='Page 4']").click();
     for (let i = 0; i < 5; i++) {
       cy.wait(2000);
       cy.get(
